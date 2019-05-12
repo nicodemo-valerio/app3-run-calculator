@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet, Button, Text, View, Picker } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
-class InfoScreen extends React.Component {
+class HelpScreen extends React.Component {
   render() {
     return (
       <View style={[styles.container, { padding: 20, fontSize: 20 }]}>
-        <Text style={{ fontSize: 30 }}>Info</Text>
-        <Text></Text>
+        <Text style={{ textAlign: 'center', fontSize: 30 }}>Help</Text>
+        <Text>There are 3 ways to use the calculator.</Text>
+        <Text>1. If you know your pace and the distance you are going to run you can calculate the finish time by clicking on "Calculate Time".</Text>
+        <Text>2. If you know your pace and the finish time you can calculate how long will be the run by clicking on "Calculate Distance"</Text>
+        <Text>3. If you know the distance and the time of the run you can calculate the pace by clicking on "Calculate Pace"</Text>
       </View>
     )
   }
@@ -109,27 +112,15 @@ class RunScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.flexRow}>
           {/* title */}
-          <Text style={{ textAlign: 'center', fontSize: 30 }}>Run calculator</Text>
+          <Text style={{ textAlign: 'center', fontSize: 30 }}>Run Calculator</Text>
         </View>
         {/* pace */}
-        <View style={styles.flexRow}>
-          <Text>Pace</Text>
-          {/* unit */}
-          <Picker
-            selectedValue={this.state.paceUnit}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ paceUnit: itemValue })
-            }>
-            <Picker.Item label="km" value="km" />
-            <Picker.Item label="mile" value="mile" />
-          </Picker>
-        </View>
-        <View style={styles.flexRow}>
+        <View style={[styles.flexRow, { borderTopColor: 'lightgrey', borderTopWidth: 0.3 }]}>
+          <Text style={styles.label}>Pace</Text>
           {/* min */}
           <Picker
             selectedValue={this.state.paceMin}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ paceMin: itemValue })
             }>
@@ -143,11 +134,11 @@ class RunScreen extends React.Component {
             <Picker.Item label="8" value="8" />
             <Picker.Item label="9" value="9" />
           </Picker>
-          <Text>Min</Text>
+          <Text>min</Text>
           {/* sec */}
           <Picker
             selectedValue={this.state.paceSec}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ paceSec: itemValue })
             }>
@@ -212,20 +203,30 @@ class RunScreen extends React.Component {
             <Picker.Item label="58" value="58" />
             <Picker.Item label="59" value="59" />
           </Picker>
-          <Text>Sec</Text>
+          <Text>sec /</Text>
+          {/* unit */}
+          <Picker
+            selectedValue={this.state.paceUnit}
+            style={styles.picker}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ paceUnit: itemValue })
+            }>
+            <Picker.Item label="km" value="km" />
+            <Picker.Item label="mile" value="mile" />
+          </Picker>
         </View>
         <View style={styles.flexRow}>
           <Button onPress={this.calcPace} title="Calculate pace"
-            accessibilityLabel="Calculate pace" />
+            accessibilityLabel="Calculate pace" color="black" />
         </View>
 
         {/* distance */}
-        <View style={styles.flexRow}>
-          <Text>Distance</Text>
+        <View style={[styles.flexRow, { borderTopColor: 'lightgrey', borderTopWidth: 0.3 }]}>
+          <Text style={styles.label}>Distance</Text>
           {/* value */}
           <Picker
             selectedValue={this.state.distanceValue}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ distanceValue: itemValue })
             }>
@@ -285,7 +286,7 @@ class RunScreen extends React.Component {
           {/* unit */}
           <Picker
             selectedValue={this.state.distanceUnit}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ distanceUnit: itemValue })
             }>
@@ -295,16 +296,16 @@ class RunScreen extends React.Component {
         </View>
         <View style={styles.flexRow}>
           <Button onPress={this.calcDistance} title="Calculate distance"
-            accessibilityLabel="Calculate distance" />
+            accessibilityLabel="Calculate distance" color="black" />
         </View>
 
         {/* finish time */}
-        <View style={styles.flexRow}>
-          <Text>Time</Text>
+        <View style={[styles.flexRow, { borderTopColor: 'lightgrey', borderTopWidth: 0.3 }]}>
+          <Text style={styles.label}>Time</Text>
           {/* hours */}
           <Picker
             selectedValue={this.state.timeHrs}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ timeHrs: itemValue })
             }>
@@ -320,11 +321,11 @@ class RunScreen extends React.Component {
             <Picker.Item label="9" value="9" />
             <Picker.Item label="10" value="10" />
           </Picker>
-          <Text>H</Text>
+          <Text>hrs</Text>
           {/* min */}
           <Picker
             selectedValue={this.state.timeMin}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ timeMin: itemValue })
             }>
@@ -389,11 +390,11 @@ class RunScreen extends React.Component {
             <Picker.Item label="58" value="58" />
             <Picker.Item label="59" value="59" />
           </Picker>
-          <Text>M</Text>
+          <Text>min</Text>
           {/* sec */}
           <Picker
             selectedValue={this.state.timeSec}
-            style={{ height: 50, width: 80, backgroundColor: '#eee' }}
+            style={styles.picker}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ timeSec: itemValue })
             }>
@@ -458,11 +459,11 @@ class RunScreen extends React.Component {
             <Picker.Item label="58" value="58" />
             <Picker.Item label="59" value="59" />
           </Picker>
-          <Text>S</Text>
+          <Text>sec</Text>
         </View>
         <View style={styles.flexRow}>
           <Button onPress={this.calcTime} title="Calculate Time"
-            accessibilityLabel="Calculate Time" />
+            accessibilityLabel="Calculate Time" color="black" />
         </View>
       </View>
 
@@ -478,18 +479,29 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'space-around'
   },
+  label: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 5
+  },
   flexRow: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  picker: {
+    backgroundColor: '#fafafa',
+    width: 60,
+    height: 50,
+    paddingLeft: 5
   }
 });
 
 const TabNavigator = createBottomTabNavigator(
   {
     Calculator: RunScreen,
-    Info: InfoScreen
+    Help: HelpScreen
   },
   {
     initialRouteName: 'Calculator',
@@ -497,6 +509,10 @@ const TabNavigator = createBottomTabNavigator(
       labelStyle: {
         fontSize: 15
       },
+      activeTintColor: 'black',
+      activeBackgroundColor: 'white',
+      inactiveTintColor: 'white',
+      inactiveBackgroundColor: 'black',
       style: { paddingBottom: 5 }
     }
   }
