@@ -4,6 +4,9 @@
     "slug": "run-calculator",
     "privacy": "public",
     "sdkVersion": "32.0.0",
+    "android": {
+      "package": "com.nicodemovalerio.runcalculator"
+    },
     "description": "A simple app that calculate pace, distance and finish time of a run",
     "platforms": [
       "ios",
