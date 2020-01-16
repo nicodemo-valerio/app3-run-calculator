@@ -3,7 +3,7 @@
     "name": "Run calculator",
     "slug": "run-calculator",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "36.0.0",
     "android": {
       "package": "com.nicodemovalerio.runcalculator"
     },
